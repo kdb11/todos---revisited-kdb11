@@ -14,9 +14,9 @@ export function Account() {
             console.log(accounts);
             SetAccount(accounts[0]);
 
-            const personContract = new web3.eth.Contract(TODO_LIST_ABI, TODOS_LIST_ADRESS);
+            const todoContract = new web3.eth.Contract(TODO_LIST_ABI, TODOS_LIST_ADRESS);
             
-            let indexes = await personContract.methods.getIndexList().call();
+            let indexes = await todoContract.methods.getIndexList().call();
             
             console.log(indexes);
 
