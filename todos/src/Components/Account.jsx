@@ -47,7 +47,7 @@ export function Account() {
 
     const html = todos.map((todo) => {
         return(
-            <ul>
+            <ul key={todo.id}>
             <li>{todo.id}</li>
             <li>{todo.text}</li>
             <li>{todo.completed.toString()}</li>
@@ -55,23 +55,23 @@ export function Account() {
         );
     });
 
-    const createTodo = async (todo) => {
+    const createNewTodo = async (todo) => {
         await contract.methods
-        .createTodo(todo.titel)
-/*         await contract.methods.createTodo(todo.id)
-        await contract.methods.createTodo(todo.completed) */
-        .send({from: account})
-        .once("reciept", async (reciept) => {
-            console.log(reciept);
-
+          .createTodo(JSON.stringify(todo.titel, todo.date, todo.stage))
+          .send({ from: account })
+          .once("receipt", async (receipt) => {
+            console.log(receipt);
+    
             populateTodos(contract);
-        })
-    }
+          });
+      };
     
 
-    return <div>
-        <p>Account: {account}</p>
-        <AddTodoForm addTodo={createTodo} ></AddTodoForm>
-        {html}
-    </div>
+    return ( 
+        <div>
+            <p>Account: {account}</p>
+            <AddTodoForm addTodo={createNewTodo} ></AddTodoForm>
+            {html}
+        </div>
+    );
 };
