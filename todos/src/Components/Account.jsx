@@ -50,7 +50,7 @@ export function Account() {
             <ul>
             <li>{todo.id}</li>
             <li>{todo.text}</li>
-            <li>{todo.completed}</li>
+            <li>{todo.completed.toString()}</li>
         </ul>
         );
     });
