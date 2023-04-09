@@ -37,7 +37,7 @@ export function Account() {
         let todoList = [];
 
         for (let i = 0; i < indexes.length; i++) {
-          const todo = await contract.methods.todos(indexes[i]).call;
+          const todo = await contract.methods.todos(indexes[i]).call();
           console.log(todo);
           todoList.push(todo);
         }
