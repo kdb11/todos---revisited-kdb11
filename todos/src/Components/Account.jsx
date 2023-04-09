@@ -45,7 +45,20 @@ export function Account() {
         setTodos(todoList);
     };
 
-    const html = todos.map((todo) => {
+    const createNewTodo = async (todo) => {
+        await contract.methods
+          .createTodo(JSON.stringify(todo.titel, todo.date, todo.stage))
+          .send({ from: account })
+          .once("receipt", async (receipt) => {
+            console.log(receipt);
+
+            /* setTodos([...todos, todo]); */
+    
+            populateTodos(contract);
+          });
+      };
+
+      const html = todos.map((todo) => {
         return(
             <ul key={todo.id}>
             <li>{todo.id}</li>
@@ -54,17 +67,6 @@ export function Account() {
         </ul>
         );
     });
-
-    const createNewTodo = async (todo) => {
-        await contract.methods
-          .createTodo(JSON.stringify(todo.titel, todo.date, todo.stage))
-          .send({ from: account })
-          .once("receipt", async (receipt) => {
-            console.log(receipt);
-    
-            populateTodos(contract);
-          });
-      };
     
 
     return ( 
