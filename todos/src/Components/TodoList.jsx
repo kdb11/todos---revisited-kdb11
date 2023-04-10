@@ -6,11 +6,14 @@ const web3 = new Web3(Web3.givenProvider);
 
 export function TodoList()  {
   const [todos, setTodos] = useState([]);
+  const [account, setAccount] = useState();
   const [todoText, setTodoText] = useState("");
 
   useEffect(() => {
     const getTodos = async () => {
-      const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,"0x1400ca8C1DadC99BD8A8429e32c2CdcF4aFAF206");
+      const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,TODOS_LIST_ADRESS);
+      const accounts = await web3.eth.getAccounts();
+      setAccount(accounts[0]);
       const todoCount = await todoListContract.methods.todoCount().call();
       const todosArray = [];
       for (let i = 1; i <= todoCount; i++) {
@@ -29,14 +32,14 @@ export function TodoList()  {
   const handleCreateTodo = async (e) => {
     e.preventDefault();
     const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,TODOS_LIST_ADRESS);
-    await todoListContract.methods.createTodo(todoText).send({ from: "0xFdcEeA7A8bD9F2b609922fA23d30eA42Fa0A8464" });
+    await todoListContract.methods.createTodo(todoText).send({ from: account });
     setTodos([...todos, { text: todoText, completed: false }]);
     setTodoText("");
   };
 
   const handleToggleTodo = async (id) => {
     const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,TODOS_LIST_ADRESS);
-    await todoListContract.methods.toggleTodo(id).send({ from: "0xFdcEeA7A8bD9F2b609922fA23d30eA42Fa0A8464" });
+    await todoListContract.methods.toggleTodo(id).send({ from: account });
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -50,7 +53,7 @@ export function TodoList()  {
 
   const handleRemoveTodo = async (id) => {
     const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,TODOS_LIST_ADRESS);
-    await todoListContract.methods.removeTodo(id).send({ from: "0xFdcEeA7A8bD9F2b609922fA23d30eA42Fa0A8464" });
+    await todoListContract.methods.removeTodo(id).send({ from: account });
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
