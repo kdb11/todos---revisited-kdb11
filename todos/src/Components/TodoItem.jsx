@@ -13,13 +13,13 @@ export default function TodoItem(props) {
 
   return (
     <li>
-      <span style={{ textDecoration: todo.completed ? "line-through" : "" }}>
+      <span class="textTodo" style={{ textDecoration: todo.completed ? "line-through" : "" }}>
         {todo.text}
       </span>
-      <button onClick={handleToggle}>
+      <button class="compBtn" onClick={handleToggle}>
         {todo.completed ? "Incomplete" : "Complete"}
       </button>
-      <button onClick={handleRemove}>Remove</button>
+      <button class="removeBtn" onClick={handleRemove}>Remove</button>
     </li>
   );
 }
