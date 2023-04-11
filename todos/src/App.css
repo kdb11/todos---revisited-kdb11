@@ -21,8 +21,8 @@ li {
   display: flex;
   flex: 1 1 auto;
   flex-direction: row;
-  list-style-type: none; 
   vertical-align: middle;
+  text-decoration: underline;
 }
 
 .textTodo {
@@ -41,4 +41,6 @@ li {
   position:absolute;
   left:55vw;
   font-size: large;
+  border-style: solid;
+  border-left-width: 20vw;
 }
