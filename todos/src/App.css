@@ -35,12 +35,12 @@ li {
   position:absolute;
   left:50vw;
   font-size: large;
+  padding: 10px;
 }
 
 .removeBtn {
   position:absolute;
   left:55vw;
   font-size: large;
-  border-style: solid;
-  border-left-width: 20vw;
+  padding: 10px;
 }
