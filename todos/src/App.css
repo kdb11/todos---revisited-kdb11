@@ -17,7 +17,7 @@ li {
   list-style: none;
   display: flex;
   width: 100%;
-  padding-bottom: 70px;
+  padding-bottom: 100px;
   display: flex;
   flex: 1 1 auto;
   flex-direction: row;
@@ -27,15 +27,18 @@ li {
 
 .textTodo {
   position:absolute;
-  left:5vw;
+  left:35vw;
+  font-size: xx-large;
 }
 
 .compBtn {
   position:absolute;
   left:50vw;
+  font-size: large;
 }
 
 .removeBtn {
   position:absolute;
-  left:90vw;
+  left:55vw;
+  font-size: large;
 }
