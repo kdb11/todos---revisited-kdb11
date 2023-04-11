@@ -55,15 +55,10 @@ export function TodoList() {
   return (
     <div>
       <h1>Todo List</h1>
-      <TodoForm createTodoHandler={handleCreateTodo} />
+        <TodoForm createTodoHandler={handleCreateTodo} />
       <ul>
         {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            toggleTodoHandler={handleToggleTodo}
-            removeTodoHandler={handleRemoveTodo}
-          />
+          <TodoItem key={todo.id} todo={todo} toggleTodoHandler={handleToggleTodo} removeTodoHandler={handleRemoveTodo}/>
         ))}
       </ul>
     </div>
