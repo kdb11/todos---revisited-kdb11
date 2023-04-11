@@ -16,7 +16,6 @@ export function TodoList() {
       const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,TODOS_LIST_ADRESS);
       const accounts = await web3.eth.getAccounts();
       setAccount(accounts[0]);
-      
       const todoCount = await todoListContract.methods.todoCount().call();
       const todosArray = [];
       
@@ -60,7 +59,7 @@ export function TodoList() {
 
   return (
     <div>
-      <h1>Todo List</h1>
+      <h3>block list</h3>
         <TodoForm createTodoHandler={handleCreateTodo} />
       <ul>
         {todos.map((todo) => (
