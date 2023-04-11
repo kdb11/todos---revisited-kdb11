@@ -11,18 +11,23 @@ export function TodoList() {
   const [account, setAccount] = useState("");
 
   useEffect(() => {
+
     const getTodos = async () => {
       const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,TODOS_LIST_ADRESS);
       const accounts = await web3.eth.getAccounts();
       setAccount(accounts[0]);
+      
       const todoCount = await todoListContract.methods.todoCount().call();
       const todosArray = [];
+      
       for (let i = 1; i <= todoCount; i++) {
         const todo = await todoListContract.methods.todos(i).call();
         todosArray.push(todo);
       }
+
       setTodos(todosArray);
     };
+
     getTodos();
   }, []);
 
@@ -35,6 +40,7 @@ export function TodoList() {
   const handleToggleTodo = async (id) => {
     const todoListContract = new web3.eth.Contract(TODO_LIST_ABI,TODOS_LIST_ADRESS);
     await todoListContract.methods.toggleTodo(id).send({ from: account });
+    
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {

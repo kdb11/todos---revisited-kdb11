@@ -16,9 +16,11 @@ export default function TodoItem(props) {
       <span class="textTodo" style={{ textDecoration: todo.completed ? "line-through" : "" }}>
         {todo.text}
       </span>
+
       <button class="compBtn" onClick={handleToggle}>
         {todo.completed ? "Incomplete" : "Complete"}
       </button>
+      
       <button class="removeBtn" onClick={handleRemove}>Remove</button>
     </li>
   );
